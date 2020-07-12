@@ -15,7 +15,7 @@ class TrafficBucket{
     private $m_sTBName;
 
     //构造 获取
-    public function __construct($maxToken){
+    public function __construct($maxToken = 50){
         //Step1 获取Redis链接
         $this->m_oRedis = \RedisPool::getInstance()->getConnection('REDIS_CONN_INFO');
 
@@ -37,7 +37,7 @@ class TrafficBucket{
     /**
      * 加入新Token
      * @param int $num 加入的令牌数量，默认1
-     * @return int 加入状态码， 0成功
+     * @return int 加入token桶中token个数 (>0)
      */
     public function add($num = 1){
         //有必要， 构造桶
@@ -73,3 +73,21 @@ class TrafficBucket{
         return $this->m_oRedis->lLen($this->m_sTBName);
     }
 }
+
+//用例①
+//200毫秒增加一个token
+// $timerId = \Swoole\Timer::tick(200 , function (){
+//     $bucket = new \TraffciBucket();
+//     $iRet = $bucket->add();
+//     echo "Bucket has ".$iRet." tokens".PHP_EOL;
+// }, ...$params);
+
+//用例②
+// $m_bucket = new \TrafficBucket();
+// if($m_bucket->sub()){
+//     //业务逻辑入口
+// }
+// else {
+//     //TODO 更新状态码
+//     $this->OutputJson(118, "网络繁忙，请稍后再试！");
+// }
