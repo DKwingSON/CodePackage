@@ -10,11 +10,11 @@ class MessageQueue{
         if(is_null(self::$oInstance)){
             self::$oInstance = new \Swoole\Corountine\Channel(10);
         }
-        return self:$oInstance;
+        return self::$oInstance;
     }
 
     protected function consume(){
-        if(!self::$oInstance isinstanceof \Swoole\Corountine\Channel){
+        if(!self::$oInstance instanceof \Swoole\Corountine\Channel){
             self::$oInstance = new \Swoole\Corountine\Channel(10);
         }
         $sOrder = self::$oInstance->pop();
@@ -26,7 +26,7 @@ class MessageQueue{
     }
 
     protected function product($sOrder){
-        if(self::$oInstance isinstanceof \Swoole\Corountine\Channel){
+        if(self::$oInstance instanceof \Swoole\Corountine\Channel){
             $iRet = self::$oInstance->push(strval($sOrder));
             return iRet;
         }
