@@ -41,6 +41,34 @@ int slidingWindos(vector<int> s){
     }
 }
 
+//DFS搜索框架-递归
+void dfs() 
+{  
+    if(到达终点状态)  
+    {  
+        ...//根据题意添加  
+        return;  
+    }  
+    if(越界或者是不合法状态)  
+        return;  
+    if(特殊状态)//剪枝
+        return ;
+    for(扩展方式)  
+    {  
+        if(扩展方式所达到状态合法)  
+        {  
+            修改操作;//根据题意来添加  
+            标记；  
+            dfs（）；  
+            (还原标记)；  
+            //是否还原标记根据题意  
+            //如果加上（还原标记）就是 回溯法  
+        }  
+ 
+    }  
+} 
+
+
 // https://blog.csdn.net/weixin_30299539/article/details/97154546
 // check redis set expire是否设置为同一个原子操作
 //
