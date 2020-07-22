@@ -130,6 +130,7 @@ public:
     }
 };
 
+//伪代码 PV操作实现生产者-消费者模式
 void PVop(){
     int in=0,out=0;
     semaphore empty,full,mutex;
@@ -164,4 +165,32 @@ void PVop(){
             v(empty);    //增加一个空缓冲区，如果有生产者等待，则唤醒
         }
     }
+}
+
+//归并排序模板
+void merge(int a[], int first,int last){
+    int mid = (last + first)/2;
+    int i = first, j = mid+1; // i, j是指针
+    int b[last-first+1], bi = 0; //搬运
+    while(i <= mid && j <= last)
+    {
+        if(a[i]<=a[j]) b[bi++] = a[i++];
+        else b[bi++] = a[j++];
+    }
+    while(i<=mid&&!(j<=last)) 
+        b[bi++] = a[i++];
+    while(!(i<=mid)&&j<=last) 
+        b[bi++] = a[j++];
+
+    //把归并好的数据置于原位置
+    for(i=first,j=0;i<=last;i++,j++)
+        a[i] = b[j];
+}
+
+void merge_sort(int a[], int first,int last){
+    if(first>=last) return;
+    int mid = (last + first) / 2;
+    merge_sort(a, first, mid);
+    merge_sort(a, mid + 1, last);
+    merge(a, first, last);
 }
