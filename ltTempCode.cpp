@@ -167,3 +167,26 @@ public:
     }
 };
 
+class Solution {
+public:
+    vector<string> fullJustify(vector<string>& words, int maxWidth) {
+        vector<string> res;
+        int begin = 0, end = 0, cnt = 0;
+        for(int i=0; i<words.size(); i++){
+            if(cnt + words[i] + 1 > maxWidth){
+                //生成
+                int space  = i - begin;
+                for(int j = begin; j <= i; j++){
+                    
+                }
+                //还原
+                cnt = 0;
+                begin = i;
+            }
+            else{
+                cnt += words[i] + 1;
+            }
+        }
+        return res;
+    }
+};
