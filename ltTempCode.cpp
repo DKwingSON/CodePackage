@@ -71,14 +71,6 @@ public:
 // 输出: "0"
 // 解释: 从原数字移除所有的数字，剩余为空就是0。
 
-
-
-
-
-
-
-
-
 class Solution {
 public:
     string trim(string s){
@@ -186,6 +178,17 @@ public:
             else{
                 cnt += words[i] + 1;
             }
+        }
+        return res;
+    }
+};
+
+class Solution {
+public:
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<vector<int>> res;
+        for(int i=0; i<nums.size(); i++){
+            
         }
         return res;
     }
