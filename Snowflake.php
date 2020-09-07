@@ -33,6 +33,22 @@ class idwork
     
 }
 
+class testWork{
+    private $privateInput;
+    public function __construct($input)
+    {
+        $this->input = $input;
+        $this->privateInput = intval($input) + 1;
+    }
+    
+    public function output(){
+        if(isset($this->input)){
+            echo $this->input.PHP_EOL;
+        }
+        else echo "Undefined".PHP_EOL;
+    }
+}
+
 class Snowflake
 {
     const EPOCH = 1543223810238;    // 起始时间戳，毫秒
@@ -129,4 +145,9 @@ for($i = 0; $i < 10; $i++){
     // echo "Estimate ".intval(10000/($end2-$start2))." ID/S".PHP_EOL;
 }
 echo "AMSSerial Average: ".strval($cnt / 10)." ID/S".PHP_EOL;
+
+// $oTest = new testWork(123);
+// $oTest->output();
+// echo $oTest->input.PHP_EOL;
+// echo $oTest->privateInput.PHP_EOL;
 ?>
