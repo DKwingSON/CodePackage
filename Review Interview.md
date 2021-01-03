@@ -107,13 +107,20 @@
     - [1. 寻道时间](#1-寻道时间)
     - [2. 旋转延迟](#2-旋转延迟)
     - [3. 数据传输时间](#3-数据传输时间)
-- [K8S: Kubernetes](#k8s-kubernetes)
-  - [什么是K8S？](#什么是k8s)
-  - [K8S重要概念](#k8s重要概念)
-    - [Pod](#pod)
-    - [Volume数据卷](#volume数据卷)
-    - [Container 容器](#container-容器)
-    - [Deployment 和 ReplicaSet（简称RS）](#deployment-和-replicaset简称rs)
+- [云](#云)
+  - [K8S: Kubernetes](#k8s-kubernetes)
+    - [什么是K8S？](#什么是k8s)
+    - [K8S重要概念](#k8s重要概念)
+      - [1. cluster](#1-cluster)
+      - [2.master](#2master)
+      - [3.node](#3node)
+      - [4.Pod](#4pod)
+      - [5.Volume数据卷](#5volume数据卷)
+      - [6.Container 容器](#6container-容器)
+      - [7.Deployment 和 ReplicaSet（简称RS）](#7deployment-和-replicaset简称rs)
+      - [8.Service何ingress](#8service何ingress)
+      - [9.Namespace](#9namespace)
+    - [为什么K8S引入Pod这个概念？](#为什么k8s引入pod这个概念)
 
 ## 分布式一致性算法 Raft
 
@@ -1254,25 +1261,39 @@ Trotation是指盘片旋转将请求数据所在的扇区移动到读写磁盘�
 Ttransfer是指完成传输所请求的数据所需要的时间，它取决于数据传输率，其值等于数据大小除以数据传输率。目前IDE/ATA能达到133MB/s，SATA
 II可达到300MB/s的接口数据传输率，数据传输时间通常远小于前两部分消耗时间。简单计算时可忽略。
 
-# K8S: [Kubernetes](https://kubernetes.io/zh/docs/concepts/overview/what-is-kubernetes/)
+# 云
 
-## 什么是K8S？
+## K8S: [Kubernetes](https://kubernetes.io/zh/docs/concepts/overview/what-is-kubernetes/)
+
+### 什么是K8S？
 
 K8S是负责自动化运维管理多个Docker程序的集群，即自动化运维管理Docker（容器化）程序
 
-## K8S重要概念
+### K8S重要概念
 
-### Pod
+#### 1. cluster
+
+cluster是 计算、存储和网络资源的集合，k8s利用这些资源运行各种基于容器的应用。
+
+#### 2.master
+
+master是cluster的大脑，他的主要职责是调度，即决定将应用放在那里运行。master运行linux操作系统，可以是物理机或者虚拟机。为了实现高可用，可以运行多个master。
+
+#### 3.node
+
+node的职责是运行容器应用。node由master管理，node负责监控并汇报容器的状态，同时根据master的要求管理容器的生命周期。node运行在linux的操作系统上，可以是物理机或者是虚拟机。
+
+#### 4.Pod
 
 Pod可以被理解成一群可以共享网络、存储和计算资源的容器化服务的集合。再打个形象的比喻，在同一个Pod里的几个Docker服务/程序，好像被部署在同一台机器上，可以通过localhost互相访问，并且可以共用Pod里的存储资源（这里是指Docker可以挂载Pod内的数据卷，数据卷的概念，后文会详细讲述，暂时理解为“需要手动mount的磁盘”）。笔者总结Pod如下图，可以看到：同一个Pod之间的Container可以通过localhost互相访问，并且可以挂载Pod内所有的数据卷；但是不同的Pod之间的Container不能用localhost访问，也不能挂载其他Pod的数据卷。如下图
 
 ![](media/ad105a324a101672da9a04d8e2fcb4cd.png)
 
-### Volume数据卷
+#### 5.Volume数据卷
 
 数据卷volume是Pod内部的磁盘资源。
 
-### Container 容器
+#### 6.Container 容器
 
 一个Pod内可以有多个容器container。
 
@@ -1288,8 +1309,31 @@ Pod可以被理解成一群可以共享网络、存储和计算资源的容器�
 
 一般来说，我们部署的大多是标准容器（ Application Container）。
 
-### Deployment 和 ReplicaSet（简称RS）
+#### 7.Deployment 和 ReplicaSet（简称RS）
 
-Deploy-\>RS-\>Pod的层次
+Deploy-\>RS-\>Pod的管理层次
 
 ![](media/09722a852d20968ce9fe5e5232edb1f9.png)
+
+#### 8.Service何ingress
+
+Deployment和Replication Controller,
+RepliceSet主要管控Pod程序服务；另一方面，Service和ingress主要管控Pod网络服务。Service隐藏了服务细节，统一对外暴露服务接口，真正做到了微服务。
+
+#### 9.Namespace
+
+把一个K8S集群划分为若干个资源不可共享的虚拟集群而诞生的。
+
+### 为什么K8S引入Pod这个概念？
+
+Kubernetes 引入 Pod 主要基于下面两个目的：
+
+1.  **可管理性。**  
+    有些容器天生就是需要紧密联系，一起工作。Pod
+    提供了比容器更高层次的抽象，将它们封装到一个部署单元中。Kubernetes 以 Pod
+    为最小单位进行调度、扩展、共享资源、管理生命周期。
+
+2.  **通信和资源共享。**  
+    Pod 中的所有容器使用同一个网络 namespace，即相同的 IP 地址和 Port
+    空间。它们可以直接用 localhost 通信。同样的，这些容器可以共享存储，当
+    Kubernetes 挂载 volume 到 Pod，本质上是将 volume 挂载到 Pod 中的每一个容器。
