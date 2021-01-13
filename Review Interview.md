@@ -1,135 +1,4 @@
-- [C++](#c)
-  - [泛型困境](#泛型困境)
-  - [在一台内存为2G的机器上，malloc(20G) 会怎样？如果是new(20G) 会怎样？](#在一台内存为2g的机器上malloc20g-会怎样如果是new20g-会怎样)
-  - [Functor 仿函数](#functor-仿函数)
-  - [New, Delete：](#new-delete)
-  - [C++的fork()? Unix下的函数](#c的fork-unix下的函数)
-  - [C++ 如何申请和释放一个数组？](#c-如何申请和释放一个数组)
-  - [C++的四种cast操作符的](#c的四种cast操作符的)
-    - [C风格转换](#c风格转换)
-    - [C++风格转换](#c风格转换-1)
-  - [C++程序内存布局](#c程序内存布局)
-  - [C++ STL allocator：](#c-stl-allocator)
-  - [C++中的null与nullptr](#c中的null与nullptr)
-  - [C++类三种方式控制权限（与Java中的三种对应权限一样）](#c类三种方式控制权限与java中的三种对应权限一样)
-  - [C++11 自动推断类型特性](#c11-自动推断类型特性)
-  - [C++的String深入讨论（百度2021秋招）](#c的string深入讨论百度2021秋招)
-  - [C++中STL的map不同插入模式的性能对比](#c中stl的map不同插入模式的性能对比)
-  - [STL中的unordered_map怎么避免冲突？](#stl中的unordered_map怎么避免冲突)
-  - [C++智能指针：](#c智能指针)
-    - [C++引用计数（智能指针相关）](#c引用计数智能指针相关)
-  - [C++ 中的存储周期：](#c-中的存储周期)
-  - [C++函数模板的实现](#c函数模板的实现)
-  - [C++内存布局](#c内存布局)
-- [计算机网络](#计算机网络)
-  - [Http与Https的区别](#http与https的区别)
-  - [路由与交换的不同](#路由与交换的不同)
-  - [HTTP-断点续传实现原理](#http-断点续传实现原理)
-  - [为什么DNS协议使用UDP协议](#为什么dns协议使用udp协议)
-  - [为什么 TCP 建立连接需要三次握手](#为什么-tcp-建立连接需要三次握手)
-  - [网络地址分类](#网络地址分类)
-  - [网络掩码](#网络掩码)
-  - [Nagle 算法](#nagle-算法)
-  - [TCP 协议粘包问题](#tcp-协议粘包问题)
-  - [TCP第三次握手失败后怎么办？](#tcp第三次握手失败后怎么办)
-  - [TCP的自动重传机制（ARQ）](#tcp的自动重传机制arq)
-    - [stop-and-wait](#stop-and-wait)
-    - [Continuous ARQ](#continuous-arq)
-      - [回退N重传(Go-Back-N)](#回退n重传go-back-n)
-      - [选择重传(Selective Repeat)](#选择重传selective-repeat)
-  - [TCP滑动窗口结构](#tcp滑动窗口结构)
-    - [拥塞控制和流量控制的区别](#拥塞控制和流量控制的区别)
-  - [浏览器是如何对CA证书进行验证的？](#浏览器是如何对ca证书进行验证的)
-  - [常见的网络协议报头](#常见的网络协议报头)
-    - [TCP报头](#tcp报头)
-    - [UDP报头](#udp报头)
-    - [IP数据包报头](#ip数据包报头)
-    - [**以太网的帧格式**](#以太网的帧格式)
-  - [HTTPS握手](#https握手)
-  - [TCP拥塞避免一图流](#tcp拥塞避免一图流)
-  - [网络协议中的缩写](#网络协议中的缩写)
-  - [Get与Post的对比](#get与post的对比)
-  - [HTTP Header的内容](#http-header的内容)
-- [操作系统](#操作系统)
-  - [linux中的根文件系统（rootfs的原理和介绍）](#linux中的根文件系统rootfs的原理和介绍)
-  - [虚拟内存和swap分区的关系](#虚拟内存和swap分区的关系)
-  - [磁盘调度的访问模型](#磁盘调度的访问模型)
-    - [**FCFS–先来先服务调度算法**](#fcfs先来先服务调度算法)
-    - [**SSTF–最短寻道时间算法**](#sstf最短寻道时间算法)
-    - [**SCAN–电梯调度算法**](#scan电梯调度算法)
-  - [*磁盘预读和磁盘缓冲*](#磁盘预读和磁盘缓冲)
-  - [僵尸进程与孤儿进程的总结](#僵尸进程与孤儿进程的总结)
-  - [怎样理解阻塞非阻塞与同步异步的区别？](#怎样理解阻塞非阻塞与同步异步的区别)
-  - [惊群效应是什么](#惊群效应是什么)
-  - [**什么是线程安全？**](#什么是线程安全)
-  - [OS的分级保护域](#os的分级保护域)
-  - [操作系统怎么管理，组织内存，申请一块内存的时候究竟发生了什么？](#操作系统怎么管理组织内存申请一块内存的时候究竟发生了什么)
-  - [操作系统从一个文件名，读取到具体的文件内容，实际干了什么事情？★★★★](#操作系统从一个文件名读取到具体的文件内容实际干了什么事情)
-  - [硬链接与软链接](#硬链接与软链接)
-  - [**异步异常**](#异步异常)
-  - [Linux系统之IO多路复用](#linux系统之io多路复用)
-  - [堆与栈的区别](#堆与栈的区别)
-  - [内存碎片产生原因及终极解决办法](#内存碎片产生原因及终极解决办法)
-- [算法与数据结构](#算法与数据结构)
-  - [**回调函数和钩子函数的区别**](#回调函数和钩子函数的区别)
-  - [AVL树，红黑树，B树，B+树，Trie树都分别应用在哪些现实场景中？](#avl树红黑树b树b树trie树都分别应用在哪些现实场景中)
-  - [海量数据排序——如果有1TB的数据需要排序，但只有32GB的内存如何排序处理？](#海量数据排序如果有1tb的数据需要排序但只有32gb的内存如何排序处理)
-  - [*布隆过滤器*的原理，使用场景和注意事项](#布隆过滤器的原理使用场景和注意事项)
-    - [最佳实践](#最佳实践)
-  - [LRU高效率算法](#lru高效率算法)
-  - [最小生成树算法](#最小生成树算法)
-  - [图的最短路径算法](#图的最短路径算法)
-  - [排序算法总结：](#排序算法总结)
-    - [十种常见算法的归类](#十种常见算法的归类)
-    - [十种常见算法的复杂度对比](#十种常见算法的复杂度对比)
-- [Redis](#redis)
-  - [归纳：底层数据结构与对应实现](#归纳底层数据结构与对应实现)
-  - [redis和memchache 的 一些区别，使用总结](#redis和memchache-的-一些区别使用总结)
-  - [hot key与big key在redis中的问题](#hot-key与big-key在redis中的问题)
-  - [redis-cluster设计](#redis-cluster设计)
-  - [Redis-cluster的同步？](#redis-cluster的同步)
-  - [跳表（Skiplist）与其他数据结构的对比](#跳表skiplist与其他数据结构的对比)
-  - [Zset](#zset)
-  - [Redis定义了几种策略用来处理内存满，需要淘汰的情况？](#redis定义了几种策略用来处理内存满需要淘汰的情况)
-  - [Redis里的HASH](#redis里的hash)
-    - [渐进式rehash](#渐进式rehash)
-  - [Redis持久化策略（RDB，AOF）](#redis持久化策略rdbaof)
-    - [AoF重写](#aof重写)
-  - [Redis 使用 sds 而不是传统 C 字符串的原因](#redis-使用-sds-而不是传统-c-字符串的原因)
-- [MySQL与DB](#mysql与db)
-  - [MySQL体系架构](#mysql体系架构)
-  - [什么是共享锁和排它锁](#什么是共享锁和排它锁)
-  - [InnoDB底层怎么实现不同的事务隔离级别？](#innodb底层怎么实现不同的事务隔离级别)
-  - [InnoDB和MyISAM的最大不同点有两个：](#innodb和myisam的最大不同点有两个)
-  - [Why does InnoDB introduce B+ tree for indexes instead of B tree or hashmap?](#why-does-innodb-introduce-b-tree-for-indexes-instead-of-b-tree-or-hashmap)
-  - [MYSQL 里头的锁](#mysql-里头的锁)
-  - [数据库的三范式：](#数据库的三范式)
-  - [数据库视图](#数据库视图)
-  - [索引未命中可能原因的场景](#索引未命中可能原因的场景)
-  - [MySQL中的删除语句](#mysql中的删除语句)
-  - [MySQL的聚簇索引与非聚簇索引](#mysql的聚簇索引与非聚簇索引)
-- [计算机组成原理](#计算机组成原理)
-  - [影响硬盘性能的因素](#影响硬盘性能的因素)
-    - [1. 寻道时间](#1-寻道时间)
-    - [2. 旋转延迟](#2-旋转延迟)
-    - [3. 数据传输时间](#3-数据传输时间)
-- [云](#云)
-  - [K8S: Kubernetes](#k8s-kubernetes)
-    - [什么是K8S？](#什么是k8s)
-    - [K8S重要概念](#k8s重要概念)
-      - [1. cluster](#1-cluster)
-      - [2.master](#2master)
-      - [3.node](#3node)
-      - [4.Pod](#4pod)
-      - [5.Volume数据卷](#5volume数据卷)
-      - [6.Container 容器](#6container-容器)
-      - [7.Deployment 和 ReplicaSet（简称RS）](#7deployment-和-replicaset简称rs)
-      - [8.Service何ingress](#8service何ingress)
-      - [9.Namespace](#9namespace)
-    - [为什么K8S引入Pod这个概念？](#为什么k8s引入pod这个概念)
-  - [Docker](#docker)
-    - [Docker核心技术](#docker核心技术)
-    - [Docker底层原理](#docker底层原理)
+# 分布式架构与PHP
 
 ## 分布式一致性算法 Raft
 
@@ -242,12 +111,12 @@ if (winner && (max_votes \< voters_quorum \|\| max_votes \< master-\>quorum))
 
 集群中部分节点之间不可达,不同分裂的小集群会自主的选择出master节点，造成原本的集群会同时存在多个master节点。广义地解决Split-Brain的问题，一般有3种方式:
 
-1. Quorums，过半选举的方式
+1\. Quorums，过半选举的方式
 
-2. 采用Redundant
+2\. 采用Redundant
 communications，冗余通信的方式，集群中采用多种通信方式，防止一种通信方式失效导致集群中的节点无法通信。
 
-3. Fencing,
+3\. Fencing,
 共享资源的方式，比如能看到共享资源就表示在集群中，能够获得共享资源的锁的就是Leader，看不到共享资源的，就表示本身结点出现问题，则停止服务。
 
 <https://leetcode-cn.com/problems/create-maximum-number/solution/yi-zhao-chi-bian-li-kou-si-dao-ti-ma-ma-zai-ye-b-7/>
@@ -266,10 +135,10 @@ DNS服务器返回全局负载均衡的服务器IP给用户
 
 ## Nginx模式的常见复杂均衡方式
 
-1.  轮询（默认）  
+1.  轮询（默认）   
     每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。
 
-    1.  weight  
+    1.  weight   
         指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。
 
     2.  hash分配 参照一致性哈希
@@ -278,19 +147,19 @@ DNS服务器返回全局负载均衡的服务器IP给用户
 
 ## PHP魔术方法
 
-\__construct()
+\_\_construct()
 
-\__desctruct()
+\_\_desctruct()
 
-\__get()
+\_\_get()
 
-\__set()
+\_\_set()
 
-\__toString()
+\_\_toString()
 
-\__clone()
+\_\_clone()
 
-\__call()
+\_\_call()
 
 # C++
 
@@ -406,12 +275,12 @@ i = int (d);
 ANSI-C++标准定义了四个新的转换符：'reinterpret_cast', 'static_cast',
 'dynamic_cast' 和 'const_cast'，目的在于控制类(class)之间的类型转换。
 
-| 转换符                       | 定义                                                                                                                                                                                                | 应用场景                                                                                                                                                                                                                 |
-|------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| reinterpret_cast\<new_type\> | 'reinterpret_cast'转换一个指针为其它类型的指针。它也允许从一个指针转换为整数类型。反之亦然。                                                                                                        | 用于底层的强制转型。这样的强制转型在底层代码以外应该极为罕见。                                                                                                                                                           |
-| dynamic_cast\<new_type\>     | 'static_cast'允许执行任意的隐式转换和相反转换动作。（即使它是不允许隐式的） 在这例子里，被转换的父类没有被检查是否与目的类型相一致。代码：                                                          | 主要用于执行“安全的向下转型（safe downcasting）”，也就是说，要确定一个对象是否是一个继承体系中的一个特定类型。它是唯一不能用旧风格语法执行的强制转型，也是唯一可能有重大运行时代价的强制转型。                           |
-| static_cast\<new_type\>      | 'dynamic_cast'只用于对象的指针和引用。当用于多态类型时，它允许任意的隐式类型转换以及相反过程。不过，与static_cast不同，在后一种情况里（注：即隐式转换的相反过程），dynamic_cast会检查操作是否有效。 | 可以被用于强制隐型转换（例如，non-const 对象转型为 const 对象，int 转型为 double，等等），它还可以用于很多这样的转换的反向转换（例如，void\* 指针转型为有类型指针，基类指针转型为派生类指针），它最接近于C-style的转换。 |
-| const_cast\<new_type\>       | 这个转换类型操纵传递对象的const属性，或者是设置或者是移除                                                                                                                                           | 强制消除对象的常量性。它是唯一能做到这一点的 C++ 风格的强制转型                                                                                                                                                          |
+| 转换符                        | 定义                                                                                                                                                                                                | 应用场景                                                                                                                                                                                                                 |
+|-------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| reinterpret_cast\<new_type\>  | 'reinterpret_cast'转换一个指针为其它类型的指针。它也允许从一个指针转换为整数类型。反之亦然。                                                                                                        | 用于底层的强制转型。这样的强制转型在底层代码以外应该极为罕见。                                                                                                                                                           |
+| dynamic_cast\<new_type\>      | 'static_cast'允许执行任意的隐式转换和相反转换动作。（即使它是不允许隐式的） 在这例子里，被转换的父类没有被检查是否与目的类型相一致。代码：                                                          | 主要用于执行“安全的向下转型（safe downcasting）”，也就是说，要确定一个对象是否是一个继承体系中的一个特定类型。它是唯一不能用旧风格语法执行的强制转型，也是唯一可能有重大运行时代价的强制转型。                           |
+| static_cast\<new_type\>       | 'dynamic_cast'只用于对象的指针和引用。当用于多态类型时，它允许任意的隐式类型转换以及相反过程。不过，与static_cast不同，在后一种情况里（注：即隐式转换的相反过程），dynamic_cast会检查操作是否有效。 | 可以被用于强制隐型转换（例如，non-const 对象转型为 const 对象，int 转型为 double，等等），它还可以用于很多这样的转换的反向转换（例如，void\* 指针转型为有类型指针，基类指针转型为派生类指针），它最接近于C-style的转换。 |
+| const_cast\<new_type\>        | 这个转换类型操纵传递对象的const属性，或者是设置或者是移除                                                                                                                                           | 强制消除对象的常量性。它是唯一能做到这一点的 C++ 风格的强制转型                                                                                                                                                          |
 
 ## C++程序内存布局
 
@@ -466,7 +335,7 @@ decltype和auto都可以用来推断类型，但是二者有几处明显的差�
 
 2．使用insert，直接插入，效率高一些
 
-## STL中的unordered_map怎么避免冲突？
+## STL中的unordered\_map怎么避免冲突？
 
 **链地址法**
 
@@ -831,7 +700,6 @@ ps -A -ostat,ppid,pid,cmd \| grep -e '\^[Zz]'
 惊群效应（thundering
 herd）是指多进程（多线程）在同时阻塞等待同一个事件的时候（休眠状态），如果等待的这个事件发生，那么他就会唤醒等待的所有进程（或者线程），但是最终却只能有一个进程（线程）获得这个时间的“控制权”，对该事件进行处理，而其他进程（线程）获取“控制权”失败，只能重新进入休眠状态，这种现象和性能浪费就叫做惊群效应。
 
-  
 单机情况下惊群效应通常发生在Linux，Nginx等系统里多个进程等待fd同时被唤醒的情况，解决办法一般是在内核或者系统里，一般不需要上层开发者去处理。分布式系统因为很高的自由度，惊群效应就需要开发者去了解和提出解决办法。
 
 **Solve:** most unix/linux kernels serialize response to accept(2)s, in other
@@ -906,11 +774,11 @@ select方法和poll方法的性能会线性下降，因为select和poll方法会
 
 epoll方法:
 
-**int epoll_create(int size);**
+**int epoll\_create(int size);**
 
-**int epoll_ctl(int epfd, int op, int fd, struct epoll_event \*event);**
+**int epoll\_ctl(int epfd, int op, int fd, struct epoll_event \*event);**
 
-**int epoll_wait(int epfd, struct epoll_event \* events, int maxevents, int
+**int epoll\_wait(int epfd, struct epoll_event \* events, int maxevents, int
 timeout);**
 
 epoll对fd的管理采用红黑树，只有当fd真的增删前才会调用epoll_ctl
@@ -930,7 +798,8 @@ epoll对fd的管理采用红黑树，只有当fd真的增删前才会调用epoll
 
 内存碎片通常分为内部碎片和外部碎片：  
 1.
-内部碎片是由于采用固定大小的内存分区，当一个进程不能完全使用分给它的固定内存区域时就产生了内部碎片，通常内部碎片难以完全避免；  
+内部碎片是由于采用固定大小的内存分区，当一个进程不能完全使用分给它的固定内存区域时就产生了内部碎片，通常内部碎片难以完全避免；
+
 2.
 外部碎片是由于某些未分配的连续内存区域太小，以至于不能满足任意进程的内存分配请求，从而不能被进程利用的内存区域。
 
@@ -1166,7 +1035,7 @@ zset底层的存储结构包括ziplist或skiplist，在同时满足以下两个�
 ### 渐进式rehash
 
 在 Java 中 HashMap 扩容是个很耗时的操作,需要去申请新的数组,为了追求高性能,Redis
-采用了渐进式 rehash 策略.这也是 hash 中最重要的部分.
+采用了**渐进式 rehash** 策略.这也是 hash 中最重要的部分.
 
 扩容的时候 rehash 策略会保留新旧两个 hashtable 结构,查询时也会同时查询两个
 hashtable.Redis会将旧 hashtable 中的内容一点一点的迁移到新的 hashtable
@@ -1202,7 +1071,11 @@ RDB又分为Save和bgsave两种，Save会阻塞当前Redis进程中所有客户�
 常用的操作（比如追加操作和长度计算操作）， 所以在 Redis 程序内部，
 绝大部分情况下都会使用 sds 而不是 char\* 来表示字符串。
 
-![digraph {     label = "\\n 图 2-1    SDS 示例";     rankdir = LR;     node [shape = record];     //     sdshdr [label = "sdshdr \| free \\n 0 \| len \\n 5 \| \<buf\> buf"];     buf [label = "{ 'R' \| 'e' \| 'd' \| 'i' \| 's' \| '\\\\0' }"];     //     sdshdr:buf -\> buf; }](media/a807c8909d42d2942d771afba97325d6.png)
+![digraph {     label = "\\n 图 2-1    SDS 示例";     rankdir = LR;     node
+[shape = record];     //     sdshdr [label = "sdshdr \| free \\n 0 \| len \\n 5
+\| \<buf\> buf"];     buf [label = "{ 'R' \| 'e' \| 'd' \| 'i' \| 's' \| '\\\\0'
+}"];     //     sdshdr:buf -\> buf;
+}](media/a807c8909d42d2942d771afba97325d6.png)
 
 # MySQL与DB
 
@@ -1323,7 +1196,7 @@ II可达到300MB/s的接口数据传输率，数据传输时间通常远小于�
 
 ### 什么是K8S？
 
-K8S是负责自动化运维管理多个Docker程序的集群，即自动化运维管理Docker（容器化）程序
+**K8S是负责自动化运维管理多个Docker程序的集群，即自动化运维管理Docker（容器化）程序**
 
 ### K8S重要概念
 
@@ -1341,29 +1214,29 @@ node的职责是运行容器应用。node由master管理，node负责监控并�
 
 #### 4.Pod
 
-Pod可以被理解成一群可以共享网络、存储和计算资源的容器化服务的集合。再打个形象的比喻，在同一个Pod里的几个Docker服务/程序，好像被部署在同一台机器上，可以通过localhost互相访问，并且可以共用Pod里的存储资源（这里是指Docker可以挂载Pod内的数据卷，数据卷的概念，后文会详细讲述，暂时理解为“需要手动mount的磁盘”）。笔者总结Pod如下图，可以看到：同一个Pod之间的Container可以通过localhost互相访问，并且可以挂载Pod内所有的数据卷；但是不同的Pod之间的Container不能用localhost访问，也不能挂载其他Pod的数据卷。如下图
+**Pod可以被理解成一群可以共享网络、存储和计算资源的容器化服务的集合**。再打个形象的比喻，在同一个Pod里的几个Docker服务/程序，好像被部署在同一台机器上，可以通过localhost互相访问，并且可以共用Pod里的存储资源（这里是指Docker可以挂载Pod内的数据卷，数据卷的概念，后文会详细讲述，暂时理解为“需要手动mount的磁盘”）。笔者总结Pod如下图，可以看到：**同一个Pod之间的Container可以通过localhost互相访问，并且可以挂载Pod内所有的数据卷；但是不同的Pod之间的Container不能用localhost访问，也不能挂载其他Pod的数据卷**。如下图
 
 ![](media/ad105a324a101672da9a04d8e2fcb4cd.png)
 
 #### 5.Volume数据卷
 
-数据卷volume是Pod内部的磁盘资源。
+**数据卷volume是Pod内部的磁盘资源**。
 
 #### 6.Container 容器
 
-一个Pod内可以有多个容器container。
+**一个Pod内可以有多个容器container**。
 
 在Pod中，容器也有分类，对这个感兴趣的同学欢迎自行阅读更多资料：
 
--   标准容器 Application Container。
+-   **标准容器 Application Container**。
 
--   初始化容器 Init Container。
+-   **初始化容器 Init Container**。
 
--   边车容器 Sidecar Container。
+-   **边车容器 Sidecar Container**。
 
--   临时容器 Ephemeral Container。
+-   **临时容器 Ephemeral Container**。
 
-一般来说，我们部署的大多是标准容器（ Application Container）。
+一般来说，我们部署的大多是**标准容器（ Application Container）**。
 
 #### 7.Deployment 和 ReplicaSet（简称RS）
 
@@ -1409,4 +1282,34 @@ b进程可以看到S资源；而c进程看不到。
 **cgroups**是namespace的一种，是为了实现虚拟化而采取的资源管理机制，决定哪些分配给容器的资源可被我们管理，分配容器使用资源的多少。容器内的进程是运行在一个隔离的环境里，使用起来，就好像是在一个独立于宿主的系统下操作一样。这种特性使得容器封装的应用比直接在宿主运行更加安全。例如可以设定一个memory使用上限，一旦进程组（容器）使用的内存达到限额再申请内存，就会出发OOM（out
 of memory），这样就不会因为某个进程消耗的内存过大而影响到其他进程的运行。
 
+Image 是 Docker
+部署的基本单位，它包含了程序文件，以及这个程序依赖的资源的环境。Docker
+Image是以一个 mount 点挂载到容器内部的。
+
+容器可以近似理解为镜像的运行时实例，默认情况下也算是在镜像层的基础上增加了一个可写层。所以，一般情况下如果你在容器内做出的修改，均包含在这个可写层中。
+
 ### Docker底层原理
+
+![](media/15f5506a61f9dbc5d470eb8899d10fe1.png)
+
+## 常用Docker命令
+
+-   启动容器以后台方式运行(更通用的方式）：
+
+\$docker run -d -it image\_name
+
+-   进入正在运行的容器内部，同时运行bash(比attach更好用)
+
+docker exec -t -i \<id/container_name\> /bin/bash
+
+-   列出当前所有正在运行的container
+
+\$docker ps
+
+-   用一行列出所有正在运行的container（容器多的时候非常清晰）
+
+\$docker ps \| less -S
+
+退出容器 **Ctrl + D**
+
+推出容器但不关闭容器 **Ctrl + P + Q**
